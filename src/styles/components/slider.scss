@@ -1,3 +1,5 @@
+@use '../utils/' as *;
+
 .slider {
     display: flex;
     justify-content: center;
@@ -11,6 +13,10 @@
             width: 2rem;
             height: 2rem;
             border-radius: 50%;
+
+            @include breakpoint-down(medium) {
+                box-shadow: 1px 2px 4px rgba(143, 143, 143, 0.5);
+            }
             
             &:hover {
                 cursor: pointer;
@@ -26,12 +32,23 @@
         height: 20rem;
         overflow: hidden;
 
+        @include breakpoint-down(medium) {
+            width: 30rem;
+            height: 15rem;
+        }
+
+        @include breakpoint-down(small) {
+            max-width: 20rem;
+            max-height: 15rem;
+        }
+
         .card {
             margin: 0 1rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             position: absolute;
+            transition: all 2s;
     
             &_image {
                 width: 10rem;
@@ -41,10 +58,31 @@
                 object-fit: cover;
                 border-radius: 50%;
                 box-shadow: 2px 6px 10px 0px rgba(143, 143, 143, 0.75);
+
+                @include breakpoint-down(medium) {
+                    width: 5rem;
+                    height: 5rem;
+                }
+                @include breakpoint-down(small) {
+                    max-width: 4rem;
+                    max-height: 4rem;
+                }
             }
     
             &_name {
-                margin: 1rem 0;
+                margin-top: 1rem;
+
+                @include breakpoint-down(medium) {
+                    font-size: 1rem;
+                }
+            }
+            
+            &_title {
+                margin-bottom: 1rem;
+
+                @include breakpoint-down(medium) {
+                    font-size: .6rem;
+                }
             }
     
             &_quote {
@@ -52,12 +90,55 @@
                     text-align: center;
                     max-width: 90%;
                     margin: 0 auto;
+                    position: relative;
+                    min-height: rem(72px);
+                    
+                    @include breakpoint-down(medium) {
+                        font-size: .7rem;
+                    }
+                }
+
+                .quote-icon {
+                    position: absolute;
+                    width: rem(30px);
+                    height: rem(30px);
+                    left: rem(30px);
+                    top: rem(225px);
+                    opacity: .3;
+                    color: lightblue;
+
+                    @include breakpoint-down(medium) {
+                        left: rem(30px);
+                        top: rem(130px);
+                    }
+
+                    @include breakpoint-down(small) {
+                        left: rem(10px);
+                        top: rem(120px);
+                    }
+                }
+
+                .quote-right {
+                    left: initial;
+                    top: initial;
+                    right: rem(40px);
+                    bottom: rem(5px);
+
+                    @include breakpoint-down(medium) {
+                        right: rem(30px);
+                        bottom: rem(20px);
+                    }
+
+                    @include breakpoint-down(small) {
+                        right: rem(20px);
+                        bottom: rem(5px);
+                    }
                 }
             }
 
         }
         .last-slide {
-            transform: translateX(100%);
+            transform: translateX(-100%);
             opacity: 0;
         }
 
@@ -67,7 +148,7 @@
         }
         
         .next-slide {
-            transform: translateX(-100%);
+            transform: translateX(100%);
             opacity: 0;
         }
     }
