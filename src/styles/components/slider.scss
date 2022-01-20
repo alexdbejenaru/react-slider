@@ -148,7 +148,7 @@
             opacity: 0;
             filter: blur(1rem);
         }
-
+        
         .active-slide{
             transform: translateX(0);
             opacity: 1;
@@ -157,6 +157,7 @@
         .next-slide {
             transform: translateX(150%);
             opacity: 0;
+            filter: blur(1rem);
         }
     }
 }
